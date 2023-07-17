@@ -2,8 +2,4 @@
 @import url("../vendor/fonts.css");
 @import url("../blocks/page.css");
 @import url("../blocks/header.css");
-@import url("../content/page.css");
-@import url("../footer/page.css");
-@import url("../profile/page.css");
-@import url("../cards/page.css");
-@import url("../card/page.css");
+@import url("../blocks/profile.css");
