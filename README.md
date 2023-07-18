@@ -8,16 +8,22 @@
 
 **Intro**
 
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.
+Sprint 3 at TripleTen, formerly known as Practicum. This project built upon the previous two sprints which focused on positioning, flexbox, BEM, etc. and incorporated responsive design, media queries, and introduced the Figma design tool. Developed a responsive design for mobile view and desktop view.
 
 **Figma**
 
 - [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)
 
-**Images**
+**Features**
+-HTML
+-CSS
+-Grid
+-Flexbox
+-Media Queries
+-BEM
+-Figma
+-Responsive Design
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster.
+**GitHub**
 
-Good luck and have fun!
-
-gh repo clone elleryhammond/se_project_aroundtheus
+- [Link to the project on GitHub](https://github.com/elleryhammond/se_project_aroundtheus.git)
