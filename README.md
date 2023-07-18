@@ -22,7 +22,7 @@ Sprint 3 at TripleTen, formerly known as Practicum. This project built upon the 
 
 **GitHub**
 
-- [Link to the project on GitHub](https://elleryhammond.github.io/)
+- [Link to the project on GitHub](https://elleryhammond.github.io/se_project_aroundtheus/)
 
 **Figma**
 
