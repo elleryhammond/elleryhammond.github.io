@@ -12,11 +12,6 @@
   margin: 0;
 }
 
-.card {
-  display: flex;
-  flex-direction: column;
-}
-
 .card__image {
   height: 282px;
   width: 282px;
@@ -27,7 +22,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: #ffffff;
   color: black;
   padding-top: 25px;
   padding-bottom: 25px;
@@ -37,11 +32,12 @@
 }
 
 .card__title {
-  font-family: "Inter", Arial, Helvetica, sans-serif;
-  color: black;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  color: #000000;
+  font-style: normal;
   font-size: 24px;
   font-weight: 900;
-  line-height: 29px;
+  line-height: 1.2;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -52,4 +48,15 @@
   width: 21px;
   height: 18px;
   border: none;
+}
+
+.card__like-button:hover {
+  opacity: 50%;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
+  .cards {
+    margin-top: 36px;
+  }
 }
