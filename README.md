@@ -10,18 +10,19 @@
 Sprint 3 at TripleTen, formerly known as Practicum. This project built upon the previous two sprints which focused on positioning, flexbox, BEM, etc. and incorporated responsive design, media queries, and introduced the Figma design tool. Developed a responsive design for mobile view and desktop view.
 
 **Features**
--HTML
--CSS
--Grid
--Flexbox
--Media Queries
--BEM
--Figma
--Responsive Design
+
+- HTML
+- CSS
+- Grid
+- Flexbox
+- Media Queries
+- BEM
+- Figma
+- Responsive Design
 
 **GitHub**
 
-- [Link to the project on GitHub](https://elleryhammond.github.io/se_project_aroundtheus/)
+- [Link to the project on GitHub](https://github.com/elleryhammond/se_project_aroundtheus.git)
 
 **Figma**
 
