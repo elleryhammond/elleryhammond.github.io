@@ -29,6 +29,10 @@
   line-height: 1.1;
   font-weight: 500;
   grid-area: title;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 200px;
 }
 
 .profile__edit-button {
@@ -48,7 +52,7 @@
   margin: 0;
   font-size: 18px;
   line-height: 1.2;
-  font-weight: 400px;
+  font-weight: 400;
   grid-area: description;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -64,6 +68,7 @@
   border: #ffffff solid 2px;
   cursor: pointer;
   grid-area: button;
+  border-radius: 2px;
 }
 
 .profile__add-button:hover {
