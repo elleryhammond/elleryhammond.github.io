@@ -42,7 +42,7 @@ const cardTemplate =
 
 /*Functions*/
 function closePopup() {
-  profileEditModal.classList.remove("modal__opened");
+  profileEditModal.classList.remove("modal_opened");
 }
 
 function getCardElement(cardData) {
@@ -52,8 +52,9 @@ function getCardElement(cardData) {
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
   // set the path to the image to the link field of the object
-
+  cardElement.querySelector(".card__image").src = cardData.link;
   // set the image alt text to the name field of the object
+  cardElement.querySelector(".card__image").alt = cardData.name;
   // set the card title to the name field of the object, too
   cardTitleEl.textContent = cardData.name;
   // return the ready HTML element with the filled-in data
@@ -72,7 +73,7 @@ function handleProfileEditSubmit(event) {
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  profileEditModal.classList.add("modal__opened");
+  profileEditModal.classList.add("modal_opened");
 });
 
 modalCloseButton.addEventListener("click", closePopup);
