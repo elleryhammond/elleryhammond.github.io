@@ -1,6 +1,7 @@
 .modal {
+  font-family: Inter, Arial, Helvetica, sans-serif;
   padding: 0 19px;
-  display: none;
+  display: flex;
   position: fixed;
   z-index: 100;
   background: rgba (0, 0, 0, 0.5);
@@ -8,10 +9,18 @@
   left: 0;
   bottom: 0;
   right: 0;
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: visibility 0s linear 0.3s, opacity 0.3s linear;
 }
 
 .modal_opened {
   display: flex;
+  visibility: visible;
+  pointer-events: all;
+  opacity: 1;
+  transition-delay: 0s;
 }
 
 .modal__container {
@@ -104,6 +113,22 @@
 .modal__button:hover {
   opacity: 0.8;
   transition: opacity 1s ease-in-out;
+}
+
+.modal__content-preview {
+  background: transparent;
+  max-width: 75vw;
+  max-height: 75vh;
+  width: auto;
+  height: auto;
+  display: flex;
+  position: fixed;
+}
+
+.image__preview-modal {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
 }
 
 @media screen and (max-width: 600px) {
