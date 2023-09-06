@@ -36,7 +36,7 @@ const cardsWrap = document.querySelector(".cards__list");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const addCardModal = document.querySelector("#add-card-modal");
 const imageModal = document.querySelector("#image-modal");
-const imageModalPreview = document.querySelector("#image-preview-modal-close");
+const imageModalPreview = document.querySelector("#image-preview-modal");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardForm = addCardModal.querySelector(".modal__form");
 
@@ -49,6 +49,9 @@ const profileEditCloseButton = profileEditModal.querySelector(
 );
 const addCardOpenButton = document.querySelector("#add-card-open-button");
 const addCardCloseButton = addCardModal.querySelector("#add-card-close-button");
+const previewModalCloseButton = document.querySelector(
+  "#image-preview-modal-close-button"
+);
 
 // Profile DOM Nodes
 const profileTitle = document.querySelector(".profile__title");
@@ -61,7 +64,7 @@ const profileDescriptionInput = document.querySelector(
 );
 const newCardTitleInput = document.querySelector("#new-card-title-input");
 const newCardLinkInput = document.querySelector("#new-card-link-input");
-const modalImage = imageModal.querySelector(".modal__image");
+const modalImage = imageModal.querySelector(".modal-image");
 const modalCaption = imageModal.querySelector(".modal__caption");
 
 /*Functions*/
@@ -73,6 +76,8 @@ function getCardElement(cardData) {
   const imageElement = cardElement.querySelector(".card__image");
   imageElement.src = cardData.link;
   imageElement.alt = cardData.name;
+  const modalCaption = imageModal.querySelector(".modal__caption");
+  modalCaption.textContent = cardData.name;
 
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");
@@ -97,7 +102,7 @@ function renderCard(cardData, wrapper) {
 
 initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
 
-/*Event Listeners Handlers*/
+/*Event Listeners & Handlers*/
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardForm.addEventListener("submit", handleAddCardSubmit);
 
@@ -117,6 +122,10 @@ addCardOpenButton.addEventListener("click", () =>
 );
 addCardCloseButton.addEventListener("click", () =>
   toggleModalWindow(addCardModal)
+);
+
+previewModalCloseButton.addEventListener("click", () =>
+  toggleModalWindow(imageModal)
 );
 
 function handleProfileEditSubmit(event) {
