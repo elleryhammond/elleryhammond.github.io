@@ -1,27 +1,27 @@
 const initialCards = [
   {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+    name: "Latourell Falls",
+    link: "https://images.unsplash.com/photo-1614271642428-5fc1b214d5b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80",
   },
   {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
+    name: "Mount Rainier",
+    link: "https://images.unsplash.com/photo-1515310787031-25ac2d68610d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80",
   },
   {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
+    name: "Arches National Park",
+    link: "https://plus.unsplash.com/premium_photo-1674664242929-f562b1069c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80",
   },
   {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
+    name: "Blue Ridge Parkway",
+    link: "https://images.unsplash.com/photo-1541424729898-d4420afb9602?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2864&q=80",
   },
   {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+    name: "Morris Island Lighthouse",
+    link: "https://images.unsplash.com/photo-1658518449993-1030370f1de4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2112&q=80",
   },
   {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+    name: "Portland, Oregon",
+    link: "https://images.unsplash.com/photo-1635209896150-ef275dbd52a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2875&q=80",
   },
 ];
 
@@ -49,8 +49,6 @@ const profileEditCloseButton = profileEditModal.querySelector(
 );
 const addCardOpenButton = document.querySelector("#add-card-open-button");
 const addCardCloseButton = addCardModal.querySelector("#add-card-close-button");
-// const imageModalOpenButton = document.querySelector(".modal__image");
-// const imageModalCloseButton = document.querySelector;
 
 // Profile DOM Nodes
 const profileTitle = document.querySelector(".profile__title");
@@ -61,30 +59,45 @@ const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
-
 const newCardTitleInput = document.querySelector("#new-card-title-input");
 const newCardLinkInput = document.querySelector("#new-card-link-input");
-
 const modalImage = imageModal.querySelector(".modal__image");
 const modalCaption = imageModal.querySelector(".modal__caption");
 
-/*Event Handlers*/
+/*Functions*/
+function getCardElement(cardData) {
+  const cardElement = cardTemplate.cloneNode(true);
+  const likeButton = cardElement.querySelector(".card__like-button");
+  const deleteButton = cardElement.querySelector(".card__delete-button");
+  cardElement.querySelector(".card__title").textContent = cardData.name;
+  const imageElement = cardElement.querySelector(".card__image");
+  imageElement.src = cardData.link;
+  imageElement.alt = cardData.name;
 
-function handleProfileEditSubmit(event) {
-  event.preventDefault();
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
-  toggleModalWindow(profileEditModal);
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
+
+  imageElement.addEventListener("click", function () {
+    imageModalPreview.src = cardData.link;
+    toggleModalWindow(imageModal);
+  });
+
+  deleteButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
+
+  return cardElement;
 }
 
-function handleAddCardSubmit(event) {
-  event.preventDefault();
-  const name = newCardTitleInput.value;
-  const link = newCardLinkInput.value;
-  renderCard({ name, link }, cardsWrap);
-  toggleModalWindow(addCardModal);
+function renderCard(cardData, wrapper) {
+  const cardElement = getCardElement(cardData);
+  wrapper.prepend(cardElement);
 }
 
+initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
+
+/*Event Listeners Handlers*/
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardForm.addEventListener("submit", handleAddCardSubmit);
 
@@ -106,70 +119,17 @@ addCardCloseButton.addEventListener("click", () =>
   toggleModalWindow(addCardModal)
 );
 
-/*Functions*/
-function getCardElement(cardData) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const likeButton = cardElement.querySelector(".card__like-button");
-  // const deleteButton = cardElement.querySelector(".card__delete-button");
-  cardElement.querySelector(".card__title").textContent = cardData.name;
-  const imageElement = cardElement.querySelector(".card__image");
-  imageElement.src = cardData.link;
-  imageElement.alt = cardData.name;
-  // cardsWrap.append(cardElement);
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
-
-  imageElement.addEventListener("click", function () {
-    imageModalPreview.src = cardData.link;
-    toggleModalWindow(imageModal);
-  });
-
-  // find delete button
-  // add the event listener to the delete button
-  // cardElement.remove();
-  // add click listener to the cardImage element
-  // openModal with previewImageModal
-
-  // imageElement.addEventListener("click", () => {
-  //   const imageModal = imageModal.querySelector("#image__modal");
-  //   imageElement.src = cardData.link;
-  //   openModal(imageModal);
-  // });
-
-  return cardElement;
+function handleProfileEditSubmit(event) {
+  event.preventDefault();
+  profileTitle.textContent = profileTitleInput.value;
+  profileDescription.textContent = profileDescriptionInput.value;
+  toggleModalWindow(profileEditModal);
 }
 
-function renderCard(cardData, wrapper) {
-  const cardElement = getCardElement(cardData);
-  wrapper.prepend(cardElement);
+function handleAddCardSubmit(event) {
+  event.preventDefault();
+  const name = newCardTitleInput.value;
+  const link = newCardLinkInput.value;
+  renderCard({ name, link }, cardsWrap);
+  toggleModalWindow(addCardModal);
 }
-
-initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
-
-// OLD CODE THAT I REFACTORED
-// function renderCard(cardData, container) {
-//   container.append(cardData);
-// }
-
-// initialCards.forEach(function (cardData) {
-//   const newCard = getCardElement(cardData);
-//   renderCard(newCard, cardsWrap);
-// });
-
-/*Event Listeners*/
-// profileEditOpenButton.addEventListener("click", () => {
-//   profileTitleInput.value = profileTitle.textContent;
-//   profileDescriptionInput.value = profileDescription.textContent;
-//   profileEditModal.classList.add("modal_opened");
-// });
-
-// profileEditCloseButton.addEventListener("click", closeEditModal);
-
-// addCardOpenButton.addEventListener("click", () => {
-//   newCardTitleInput.value = newCardTitleInput.textContent;
-//   newCardLinkInput.value = newCardLinkInput.textContent;
-//   addCardModal.classList.add("modal_opened");
-// });
-
-// addCardCloseButton.addEventListener("click", closeAddModal);
