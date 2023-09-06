@@ -117,6 +117,8 @@
 }
 
 .modal__content-preview {
+  position: relative;
+  border-radius: 10px;
   padding: 0px;
   background: none;
   max-width: 75vw;
@@ -126,35 +128,23 @@
 }
 
 .image__preview-modal {
-  object-fit: cover;
   max-width: 100%;
-}
-
-.modal__close-button {
-  top: 148px;
-  left: 871px;
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  background-image: url(../images/Close\ Icon.svg);
-  border: none;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-size: contain;
-  cursor: pointer;
-}
-.modal__close-button:hover {
-  opacity: 0.8;
+  width: auto;
+  height: auto;
 }
 
 .modal__caption {
   font-family: Inter, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 15px;
+  weight: 400;
   position: absolute;
   color: #ffffff;
   margin: 0px;
   width: 240px;
   height: 12px;
   left: 0px;
+  top: calc(100% + 10px);
 }
 
 . @media screen and (max-width: 600px) {

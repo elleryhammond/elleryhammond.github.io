@@ -77,15 +77,15 @@ function getCardElement(cardData) {
   imageElement.src = cardData.link;
   imageElement.alt = cardData.name;
   const modalCaption = imageModal.querySelector(".modal__caption");
-  modalCaption.textContent = cardData.name;
 
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");
   });
 
   imageElement.addEventListener("click", function () {
-    imageModalPreview.src = cardData.link;
     toggleModalWindow(imageModal);
+    imageModalPreview.src = cardData.link;
+    modalCaption.textContent = cardData.name;
   });
 
   deleteButton.addEventListener("click", () => {
