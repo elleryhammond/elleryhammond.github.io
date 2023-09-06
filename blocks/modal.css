@@ -127,7 +127,7 @@
   display: flex;
 }
 
-.image__preview-modal {
+.modal__preview-image {
   max-width: 100%;
   width: auto;
   height: auto;
