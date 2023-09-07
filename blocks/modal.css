@@ -1,4 +1,5 @@
 .modal {
+  padding: 0 19px;
   font-family: Inter, Arial, Helvetica, sans-serif;
   display: flex;
   position: fixed;
@@ -70,7 +71,7 @@
   flex-direction: column;
 }
 
-.modal__input {
+.modal__input-edit {
   margin: 0px 0px 43px 0px;
   padding: 0px 0px 13px 0px;
   border: none;
@@ -82,17 +83,42 @@
   line-height: normal;
 }
 
-.modal__input:last-of-type {
+.modal__input-edit:last-of-type {
   margin-bottom: 75px;
 }
 
-.modal__input::placeholder {
+.modal__input-edit::placeholder {
   color: #000000;
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.modal__input-new {
+  margin: 0px 0px 43px 0px;
+  padding: 0px 0px 13px 0px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.modal__input-new::placeholder {
+  color: #c4c4c4;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.modal__input-new:last-of-type {
+  margin-bottom: 75px;
 }
 
 .modal__button {
@@ -127,6 +153,20 @@
   display: flex;
 }
 
+.modal__close-preview {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: calc(100% + 5px);
+  background-image: url(../images/Close\ Icon.svg);
+  border: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
 .modal__preview-image {
   max-width: 100%;
   width: auto;
@@ -147,18 +187,15 @@
   top: calc(100% + 10px);
 }
 
-. @media screen and (max-width: 600px) {
+@media screen and (max-width: 480px) {
   .modal__container {
     width: calc(100% - 45px);
     padding: 25px 22px 25px 22px;
   }
 
   .modal__close {
-    background-image: url(../images/Close\ Icon.svg);
-    background-size: contain;
     width: 26px;
     height: 26px;
-    position: absolute;
     left: 250px;
     top: -50px;
   }
@@ -176,5 +213,32 @@
     font-size: 14px;
     width: 100%;
     max-height: 46px;
+  }
+
+  .modal__content-preview {
+    padding-left: 20px;
+    padding-right: 20px;
+    max-width: 240px;
+    max-height: 299px;
+  }
+
+  .modal__close-preview {
+    width: 30px;
+    height: 30px;
+    height: 30px;
+    left: 260px;
+  }
+
+  .modal__caption {
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+    position: absolute;
+    color: #ffffff;
+    margin: 0px;
+    width: 240px;
+    height: 12px;
+    left: 20px;
   }
 }
