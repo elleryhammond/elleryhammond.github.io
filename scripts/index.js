@@ -38,6 +38,7 @@ const imageModal = document.querySelector("#image-modal");
 const imageModalPreview = document.querySelector("#image-preview-modal");
 const profileEditForm = document.forms["edit-profile-form"];
 const addCardForm = document.forms["add-card-form"];
+const modal = document.querySelectorAll(".modal");
 
 // Buttons and other DOM Nodes
 const profileEditOpenButton = document.querySelector(
@@ -145,3 +146,26 @@ function handleAddCardSubmit(event) {
   addCardForm.reset();
   closeModal(addCardModal);
 }
+
+/* Close Modals with ESC key and click on overlay */
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeModal(profileEditModal);
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeModal(addCardModal);
+  }
+});
+
+const handleClosePopup = (event) => {
+  if (event.target.classList.contains("modal_opened")) {
+    closeModal(event.currentTarget);
+  }
+};
+
+modal.forEach((modal) => {
+  modal.addEventListener("mousedown", handleClosePopup);
+});
