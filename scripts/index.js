@@ -160,6 +160,12 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeModal(imageModal);
+  }
+});
+
 const handleClosePopup = (event) => {
   if (event.target.classList.contains("modal_opened")) {
     closeModal(event.currentTarget);
