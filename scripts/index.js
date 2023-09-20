@@ -107,14 +107,6 @@ initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardForm.addEventListener("submit", handleAddCardSubmit);
 
-function openModal(modal) {
-  modal.classList.add("modal_opened");
-}
-
-function closeModal(modal) {
-  modal.classList.remove("modal_opened");
-}
-
 profileEditOpenButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
@@ -147,31 +139,29 @@ function handleAddCardSubmit(event) {
   closeModal(addCardModal);
 }
 
-/* Close Modals with ESC key and click on overlay */
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    closeModal(profileEditModal);
-  }
-});
+// Open Modal & Close Modal by Mousedowna & ESC Functions
+function openModal(modal) {
+  modal.classList.add("modal_opened");
+  document.addEventListener("keydown", closeModalByEsc);
+  document.addEventListener("mousedown", closeModalOnRemoteClick);
+}
 
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    closeModal(addCardModal);
-  }
-});
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closeModalByEsc);
+  document.removeEventListener("mousedown", closeModalOnRemoteClick);
+}
 
-document.addEventListener("keydown", (event) => {
+function closeModalByEsc(event) {
   if (event.key === "Escape") {
-    closeModal(imageModal);
+    const openedModal = document.querySelector(".modal_opened");
+    closeModal(openedModal);
   }
-});
+}
 
-const handleClosePopup = (event) => {
+function closeModalOnRemoteClick(event) {
   if (event.target.classList.contains("modal_opened")) {
-    closeModal(event.currentTarget);
+    const openedModal = document.querySelector(".modal_opened");
+    closeModal(openedModal);
   }
-};
-
-modal.forEach((modal) => {
-  modal.addEventListener("mousedown", handleClosePopup);
-});
+}
