@@ -167,9 +167,7 @@
   border-radius: 10px;
   padding: 0px;
   background: none;
-  max-width: 75vw;
   width: auto;
-  max-height: 75vh;
   display: flex;
 }
 
@@ -188,9 +186,8 @@
 }
 
 .modal__preview-image {
-  max-width: 100%;
-  width: auto;
-  height: auto;
+  max-width: 75vw;
+  max-height: 75vh;
 }
 
 .modal__caption {
