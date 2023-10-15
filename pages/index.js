@@ -137,7 +137,7 @@ function handleProfileEditSubmit(event) {
   event.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  profileEditForm.reset();
+  profileEditFormValidator.resetValidation();
   closeModal(profileEditModal);
 }
 
