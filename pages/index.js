@@ -137,7 +137,7 @@ function handleProfileEditSubmit(event) {
   event.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
-  profileEditFormValidator.resetValidation();
+  profileEditForm.reset();
   closeModal(profileEditModal);
 }
 
@@ -146,8 +146,9 @@ function handleAddCardSubmit(event) {
   const name = newCardTitleInput.value;
   const link = newCardLinkInput.value;
   renderCard({ name, link }, cardsWrap);
-  addCardFormValidator.resetValidation();
+  addCardForm.reset();
   closeModal(addCardModal);
+  addCardFormValidator.resetValidation();
 }
 
 // Open Modal & Close Modal by Mousedowna & ESC Functions
