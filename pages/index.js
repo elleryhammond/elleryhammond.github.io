@@ -1,3 +1,6 @@
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+
 const initialCards = [
   {
     name: "Latourell Falls",
@@ -24,6 +27,14 @@ const initialCards = [
     link: "https://images.unsplash.com/photo-1635209896150-ef275dbd52a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2875&q=80",
   },
 ];
+
+const cardData = {
+  name: "Latourell Falls",
+  link: "https://images.unsplash.com/photo-1614271642428-5fc1b214d5b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80",
+};
+
+const card = new Card(cardData, "#card-template");
+card.getView();
 
 // Templates
 const cardTemplate = document
@@ -71,16 +82,16 @@ const modalCaption = imageModal.querySelector(".modal__caption");
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const likeButton = cardElement.querySelector(".card__like-button");
-  const deleteButton = cardElement.querySelector(".card__delete-button");
+  // const deleteButton = cardElement.querySelector(".card__delete-button");
   cardElement.querySelector(".card__title").textContent = cardData.name;
   const imageElement = cardElement.querySelector(".card__image");
   imageElement.src = cardData.link;
   imageElement.alt = cardData.name;
   const modalCaption = imageModal.querySelector(".modal__caption");
 
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
+  // likeButton.addEventListener("click", () => {
+  //   likeButton.classList.toggle("card__like-button_active");
+  // });
 
   imageElement.addEventListener("click", function () {
     openModal(imageModal);
@@ -89,9 +100,9 @@ function getCardElement(cardData) {
     modalCaption.textContent = cardData.name;
   });
 
-  deleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
+  // deleteButton.addEventListener("click", () => {
+  //   cardElement.remove();
+  // });
 
   return cardElement;
 }
@@ -165,3 +176,20 @@ function closeModalOnRemoteClick(event) {
     closeModal(openedModal);
   }
 }
+
+// Form Validation
+
+const config = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+const profileEditFormValidator = new FormValidator(config, profileEditForm);
+profileEditFormValidator.enableValidation();
+
+const addCardFormValidator = new FormValidator(config, addCardForm);
+addCardFormValidator.enableValidation();
