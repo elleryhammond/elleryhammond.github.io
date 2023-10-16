@@ -56,11 +56,4 @@ export default class Card {
     this._cardElement.remove();
     this._cardElement = null;
   }
-
-  _handleImageClick() {
-    openModal(imageModal);
-    imageModalPreview.src = cardData._link;
-    imageModalPreview.alt = cardData._name;
-    modalCaption.textContent = cardData._name;
-  }
 }
