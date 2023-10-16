@@ -92,6 +92,16 @@ addCardCloseButton.addEventListener("click", () => closeModal(addCardModal));
 previewModalCloseButton.addEventListener("click", () => closeModal(imageModal));
 
 // Functions
+function renderCard(cardData) {
+  const card = new Card(cardData, "#card-template", handleImageClick);
+  return card.getView();
+}
+
+initialCards.forEach((cardData) => {
+  const cardElement = renderCard(cardData);
+  cardsWrap.append(cardElement);
+});
+
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", closeModalByEsc);
@@ -130,16 +140,7 @@ function handleAddCardSubmit(event) {
   event.preventDefault();
   const name = newCardTitleInput.value;
   const link = newCardLinkInput.value;
-
-  const card = new Card(
-    {
-      name,
-      link,
-    },
-    "#card-template",
-    handleImageClick
-  );
-  const cardElement = card.getView();
+  const cardElement = renderCard({ name, link });
   cardsWrap.prepend(cardElement);
   addCardForm.reset();
   closeModal(addCardModal);
@@ -152,12 +153,6 @@ function handleImageClick() {
   imageModalPreview.setAttribute("alt", this._name);
   modalCaption.textContent = this._name;
 }
-
-initialCards.forEach((cardData) => {
-  const card = new Card(cardData, "#card-template", handleImageClick);
-  const cardElement = card.getView();
-  cardsWrap.append(cardElement);
-});
 
 // Form Validation
 
