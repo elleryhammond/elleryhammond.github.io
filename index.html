@@ -16,7 +16,7 @@
       <header class="header page__section">
         <img
           class="header__logo"
-          src="images/logo.svg"
+          src="./src/images/logo.svg"
           alt="Around The U.S. logo"
         />
       </header>
@@ -24,7 +24,7 @@
         <section class="profile page__section">
           <img
             class="profile__image"
-            src="./images/jacques-cousteau.jpg"
+            src="./src/images/jacques-cousteau.jpg"
             alt="Avatar"
           />
           <div class="profile__info">
@@ -144,7 +144,7 @@
     <div class="modal" id="image-modal">
       <div class="modal__content-preview">
         <button
-          class="modal__close-preview"
+          class="modal__close modal__close-preview"
           id="image-preview-modal-close-button"
           type="button"
         ></button>
@@ -170,6 +170,10 @@
     </template>
 
     <script src="./pages/index.js" type="module" defer></script>
-    <script src="./components/FormValidator.js" type="module" defer></script>
+    <script
+      src="./src/components/FormValidator.js"
+      type="module"
+      defer
+    ></script>
   </body>
 </html>

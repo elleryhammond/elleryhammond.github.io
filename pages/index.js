@@ -1,76 +1,35 @@
-import Card from "../components/Card.js";
-import FormValidator from "../components/FormValidator.js";
+// import all of the classes
+import Card from "../src/components/Card.js";
+import FormValidator from "../src/components/FormValidator.js";
+import Popup from "../src/components/Popup.js";
+import PopupWithForm from "../src/components/PopupWithForm.js";
+import PopupWithImage from "../src/components/PopupWithImage.js";
+import Section from "../src/components/Section.js";
+import UserInfo from "../src/components/UserInfo.js";
 
-const initialCards = [
-  {
-    name: "Latourell Falls",
-    link: "https://images.unsplash.com/photo-1614271642428-5fc1b214d5b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80",
-  },
-  {
-    name: "Mount Rainier",
-    link: "https://images.unsplash.com/photo-1515310787031-25ac2d68610d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80",
-  },
-  {
-    name: "Arches National Park",
-    link: "https://plus.unsplash.com/premium_photo-1674664242929-f562b1069c02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80",
-  },
-  {
-    name: "Blue Ridge Parkway",
-    link: "https://images.unsplash.com/photo-1541424729898-d4420afb9602?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2864&q=80",
-  },
-  {
-    name: "Morris Island Lighthouse",
-    link: "https://images.unsplash.com/photo-1658518449993-1030370f1de4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2112&q=80",
-  },
-  {
-    name: "Portland, Oregon",
-    link: "https://images.unsplash.com/photo-1635209896150-ef275dbd52a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2875&q=80",
-  },
-];
-
-const cardData = {
-  name: "Latourell Falls",
-  link: "https://images.unsplash.com/photo-1614271642428-5fc1b214d5b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80",
-};
-
-const cardTemplate = document
-  .querySelector("#card-template")
-  .content.querySelector(".card");
-
-// Selectors
-const cardsWrap = document.querySelector(".cards__list");
-
-const profileEditModal = document.querySelector("#profile-edit-modal");
-const profileEditForm = document.forms["edit-profile-form"];
-const profileEditOpenButton = document.querySelector(
-  "#edit-profile-open-button"
-);
-const profileEditCloseButton = profileEditModal.querySelector(
-  "#edit-profile-close-button"
-);
-
-const addCardModal = document.querySelector("#add-card-modal");
-const addCardForm = document.forms["add-card-form"];
-const addCardOpenButton = document.querySelector("#add-card-open-button");
-const addCardCloseButton = addCardModal.querySelector("#add-card-close-button");
-
-const imageModal = document.querySelector("#image-modal");
-const imageModalPreview = document.querySelector("#image-preview-modal");
-const previewModalCloseButton = document.querySelector(
-  "#image-preview-modal-close-button"
-);
-const modalCaption = document.querySelector(".modal__caption");
-
-const profileTitle = document.querySelector(".profile__title");
-const profileDescription = document.querySelector(".profile__description");
-
-const profileTitleInput = document.querySelector("#profile-title-input");
-const profileDescriptionInput = document.querySelector(
-  "#profile-description-input"
-);
-
-const newCardTitleInput = document.querySelector("#new-card-title-input");
-const newCardLinkInput = document.querySelector("#new-card-link-input");
+import {
+  initialCards,
+  cardsWrap,
+  profileEditModal,
+  profileEditForm,
+  profileEditOpenButton,
+  profileEditCloseButton,
+  addCardModal,
+  addCardForm,
+  addCardOpenButton,
+  addCardCloseButton,
+  imageModal,
+  imageModalPreview,
+  previewModalCloseButton,
+  modalCaption,
+  profileTitle,
+  profileDescription,
+  profileTitleInput,
+  profileDescriptionInput,
+  newCardTitleInput,
+  newCardLinkInput,
+  config,
+} from "../src/utils/constants.js";
 
 // Event Listeners
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
@@ -91,17 +50,12 @@ addCardCloseButton.addEventListener("click", () => closeModal(addCardModal));
 
 previewModalCloseButton.addEventListener("click", () => closeModal(imageModal));
 
+// initialCards.forEach((cardData) => {
+//   const cardElement = renderCard(cardData);
+//   cardsWrap.append(cardElement);
+// });
+
 // Functions
-function renderCard(cardData) {
-  const card = new Card(cardData, "#card-template", handleImageClick);
-  return card.getView();
-}
-
-initialCards.forEach((cardData) => {
-  const cardElement = renderCard(cardData);
-  cardsWrap.append(cardElement);
-});
-
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", closeModalByEsc);
@@ -128,6 +82,7 @@ function closeModalOnRemoteClick(event) {
   }
 }
 
+// Current Functions
 function handleProfileEditSubmit(event) {
   event.preventDefault();
   profileTitle.textContent = profileTitleInput.value;
@@ -154,19 +109,62 @@ function handleImageClick() {
   modalCaption.textContent = this._name;
 }
 
-// Form Validation
+// NEW functions
+// function handleImageClick(card) {
+//   const data = {
+//     link: card.src,
+//     name: card.src,
+//   };
+//   imagePreview.open(cardData);
+// }
 
-const config = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
-  errorClass: "modal__error_visible",
-};
+// function handleAddCardSubmit(cardData) {
+//   renderCard(cardData);
+//   addCardPopup.close();
+// }
 
+// function handleProfileEditSubmit(cardData) {
+//   userInfo.setUserInfo(cardData);
+//   editProfilePopup.close();
+// }
+
+// FUNCTIONS
+function renderCard(cardData) {
+  const card = new Card(cardData, "#card-template", handleImageClick);
+  const element = card.getView();
+  cardSection.addItem(element);
+}
+
+// Form Validator class
 const profileEditFormValidator = new FormValidator(config, profileEditForm);
 profileEditFormValidator.enableValidation();
 
 const addCardFormValidator = new FormValidator(config, addCardForm);
 addCardFormValidator.enableValidation();
+
+// Popup class
+
+// PopupWithForm class
+const addCardPopup = new PopupWithForm("#add-card-modal", handleAddCardSubmit);
+// addCardPopup.setEventListeners();
+
+const userInfo = new UserInfo(".profile__title", ".profile__description");
+const editProfilePopup = new PopupWithForm(
+  "#profile-edit-modal",
+  handleProfileEditSubmit
+);
+// editProfilePopup.setEventListeners();
+
+const imagePreview = new PopupWithImage("#modal__preview-image");
+// imagePreview.setEventListeners();
+
+// Section class
+const cardSection = new Section(
+  { items: initialCards, renderer: renderCard },
+  ".cards__list"
+);
+cardSection.renderItems();
+
+// addCardOpenButton.addEventListener("click", () => {
+//   addCardPopup.open();
+// });
