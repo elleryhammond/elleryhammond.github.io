@@ -32,7 +32,7 @@ import {
 } from "../src/utils/constants.js";
 
 // Event Listeners
-profileEditForm.addEventListener("submit", handleProfileEditSubmit);
+// profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 addCardForm.addEventListener("submit", handleAddCardSubmit);
 
@@ -83,24 +83,24 @@ function closeModalOnRemoteClick(event) {
 }
 
 // Current Functions
-function handleProfileEditSubmit(event) {
-  event.preventDefault();
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
-  profileEditForm.reset();
-  closeModal(profileEditModal);
-}
+// function handleProfileEditSubmit(event) {
+//   event.preventDefault();
+//   profileTitle.textContent = profileTitleInput.value;
+//   profileDescription.textContent = profileDescriptionInput.value;
+//   profileEditForm.reset();
+//   closeModal(profileEditModal);
+// }
 
-function handleAddCardSubmit(event) {
-  event.preventDefault();
-  const name = newCardTitleInput.value;
-  const link = newCardLinkInput.value;
-  const cardElement = renderCard({ name, link });
-  cardsWrap.prepend(cardElement);
-  addCardForm.reset();
-  closeModal(addCardModal);
-  addCardFormValidator.resetValidation();
-}
+// function handleAddCardSubmit(event) {
+//   event.preventDefault();
+//   const name = newCardTitleInput.value;
+//   const link = newCardLinkInput.value;
+//   const cardElement = renderCard({ name, link });
+//   cardsWrap.prepend(cardElement);
+//   addCardForm.reset();
+//   closeModal(addCardModal);
+//   addCardFormValidator.resetValidation();
+// }
 
 function handleImageClick() {
   openModal(imageModal);
@@ -109,7 +109,9 @@ function handleImageClick() {
   modalCaption.textContent = this._name;
 }
 
-// NEW functions
+// function handleImageClick(cardData) {
+//   imagePreview.open(cardData);
+// }
 // function handleImageClick(card) {
 //   const data = {
 //     link: card.src,
@@ -118,52 +120,47 @@ function handleImageClick() {
 //   imagePreview.open(cardData);
 // }
 
-// function handleAddCardSubmit(cardData) {
-//   renderCard(cardData);
-//   addCardPopup.close();
-// }
-
-// function handleProfileEditSubmit(cardData) {
-//   userInfo.setUserInfo(cardData);
-//   editProfilePopup.close();
-// }
-
-// FUNCTIONS
 function renderCard(cardData) {
   const card = new Card(cardData, "#card-template", handleImageClick);
   const element = card.getView();
   cardSection.addItem(element);
 }
 
-// Form Validator class
-const profileEditFormValidator = new FormValidator(config, profileEditForm);
-profileEditFormValidator.enableValidation();
+const newUserInfo = new UserInfo(".profile__title", ".profile__description");
 
-const addCardFormValidator = new FormValidator(config, addCardForm);
-addCardFormValidator.enableValidation();
-
-// Popup class
-
-// PopupWithForm class
 const addCardPopup = new PopupWithForm("#add-card-modal", handleAddCardSubmit);
-// addCardPopup.setEventListeners();
+addCardPopup.setEventListeners();
 
-const userInfo = new UserInfo(".profile__title", ".profile__description");
+function handleAddCardSubmit(cardData) {
+  renderCard(cardData);
+  addCardPopup.close();
+}
+
 const editProfilePopup = new PopupWithForm(
   "#profile-edit-modal",
   handleProfileEditSubmit
 );
-// editProfilePopup.setEventListeners();
+editProfilePopup.setEventListeners();
 
-const imagePreview = new PopupWithImage("#modal__preview-image");
-// imagePreview.setEventListeners();
+function handleProfileEditSubmit(formData) {
+  newUserInfo.setUserInfo(formData);
+  editProfilePopup.close();
+}
 
-// Section class
+const imagePreview = new PopupWithImage("#image-modal");
+imagePreview.setEventListeners();
+
 const cardSection = new Section(
   { items: initialCards, renderer: renderCard },
   ".cards__list"
 );
 cardSection.renderItems();
+
+const profileEditFormValidator = new FormValidator(config, profileEditForm);
+profileEditFormValidator.enableValidation();
+
+const addCardFormValidator = new FormValidator(config, addCardForm);
+addCardFormValidator.enableValidation();
 
 // addCardOpenButton.addEventListener("click", () => {
 //   addCardPopup.open();
