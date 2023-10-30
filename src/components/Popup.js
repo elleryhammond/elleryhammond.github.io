@@ -1,6 +1,7 @@
 export default class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
+    this._closeButton = this._popupElement.querySelector(".modal__close");
   }
 
   open() {
@@ -21,11 +22,10 @@ export default class Popup {
     document.addEventListener("keydown", this._handleEscClose);
     this._popupElement.addEventListener("click", (event) => {
       if (event.target.classList.contains("modal_opened")) {
-        this._close();
+        this.close();
       }
     });
-    const closeButton = this._popupElement.querySelector(".modal__close");
-    closeButton.addEventListener("click", () => {
+    this._closeButton.addEventListener("click", () => {
       this.close();
     });
   }
