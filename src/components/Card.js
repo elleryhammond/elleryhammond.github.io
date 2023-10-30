@@ -1,6 +1,6 @@
 export default class Card {
   constructor(cardData, cardSelector, handleImageClick) {
-    this._name = cardData.name;
+    this._title = cardData.title;
     this._link = cardData.link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
@@ -20,9 +20,9 @@ export default class Card {
     this._setEventListeners();
     const cardTitle = this._cardElement.querySelector(".card__title");
     const cardImage = this._cardElement.querySelector(".card__image");
-    cardTitle.textContent = this._name;
+    cardTitle.textContent = this._title;
     cardImage.setAttribute("src", this._link);
-    cardImage.setAttribute("alt", this._name);
+    cardImage.setAttribute("alt", this._title);
     return this._cardElement;
   }
 
@@ -40,7 +40,7 @@ export default class Card {
 
     this._cardImage = this._cardElement.querySelector(".card__image");
     this._cardImage.addEventListener("click", () => {
-      this._handleImageClick();
+      this._handleImageClick(this._title, this._link);
     });
   }
 
