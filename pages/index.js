@@ -31,36 +31,6 @@ import {
   config,
 } from "../src/utils/constants.js";
 
-// profileEditCloseButton.addEventListener("click", () =>
-//   closeModal(profileEditModal)
-// );
-
-// addCardCloseButton.addEventListener("click", () => closeModal(addCardModal));
-
-// previewModalCloseButton.addEventListener("click", () => closeModal(imageModal));
-
-// // Functions
-
-// function closeModal(modal) {
-//   modal.classList.remove("modal_opened");
-//   document.removeEventListener("keydown", closeModalByEsc);
-//   document.removeEventListener("mousedown", closeModalOnRemoteClick);
-// }
-
-// function closeModalByEsc(event) {
-//   if (event.key === "Escape") {
-//     const openedModal = document.querySelector(".modal_opened");
-//     closeModal(openedModal);
-//   }
-// }
-
-// function closeModalOnRemoteClick(event) {
-//   if (event.target.classList.contains("modal_opened")) {
-//     const openedModal = document.querySelector(".modal_opened");
-//     closeModal(openedModal);
-//   }
-// }
-
 const newUserInfo = new UserInfo(".profile__title", ".profile__description");
 
 const addCardPopup = new PopupWithForm("#add-card-modal", handleAddCardSubmit);
