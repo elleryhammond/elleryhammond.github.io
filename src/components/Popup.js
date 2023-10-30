@@ -17,12 +17,6 @@ export default class Popup {
     }
   };
 
-  // _handleRemoteClick = (event) => {
-  //   if (event.target.classList.contains("modal_opened")) {
-  //     this._close();
-  //   }
-  // };
-
   setEventListeners() {
     document.addEventListener("keydown", this._handleEscClose);
     this._popupElement.addEventListener("click", (event) => {
