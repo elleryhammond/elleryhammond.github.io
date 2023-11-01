@@ -47,10 +47,17 @@ editProfilePopup.setEventListeners();
 const imagePreview = new PopupWithImage("#image-modal");
 imagePreview.setEventListeners();
 
-const renderCard = (cardData) => {
-  const createCard = new Card(cardData, "#card-template", handleImageClick);
-  cardSection.addItem(createCard.getView());
-};
+function createCard(cardData) {
+  const cardElement = new Card(cardData, "#card-template", (link, title) => {
+    imagePreview.open(link, title);
+  });
+  return cardElement.getView();
+}
+
+function renderCard(cardData) {
+  const element = createCard(cardData);
+  cardSection.addItem(element);
+}
 
 const cardSection = new Section(
   { items: initialCards, renderer: renderCard },
@@ -79,10 +86,6 @@ profileEditFormValidator.enableValidation();
 
 const addCardFormValidator = new FormValidator(config, addCardForm);
 addCardFormValidator.enableValidation();
-
-function handleImageClick(title, link) {
-  imagePreview.open(title, link);
-}
 
 function handleAddCardSubmit(data) {
   renderCard(data);
