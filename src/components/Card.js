@@ -19,10 +19,9 @@ export default class Card {
     this._cardElement = this._getTemplate();
     this._setEventListeners();
     const cardTitle = this._cardElement.querySelector(".card__title");
-    const cardImage = this._cardElement.querySelector(".card__image");
     cardTitle.textContent = this._title;
-    cardImage.setAttribute("src", this._link);
-    cardImage.setAttribute("alt", this._title);
+    this._cardImage.setAttribute("src", this._link);
+    this._cardImage.setAttribute("alt", this._title);
     return this._cardElement;
   }
 

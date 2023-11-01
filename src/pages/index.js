@@ -30,6 +30,7 @@ import {
   newCardTitleInput,
   newCardLinkInput,
   config,
+  cardData,
 } from "../utils/constants.js";
 
 const newUserInfo = new UserInfo(".profile__title", ".profile__description");
@@ -46,25 +47,38 @@ editProfilePopup.setEventListeners();
 const imagePreview = new PopupWithImage("#image-modal");
 imagePreview.setEventListeners();
 
+const renderCard = (cardData) => {
+  const createCard = new Card(cardData, "#card-template", handleImageClick);
+  cardSection.addItem(createCard.getView());
+};
+
 const cardSection = new Section(
   { items: initialCards, renderer: renderCard },
   ".cards__list"
 );
 cardSection.renderItems();
 
+// Create universal instances of validators
+
+// const formValidators = {};
+// const enableValidation = (config) => {
+//   const formList = Array.from(document.querySelectorAll(config.formSelector));
+//   formList.forEach((formElement) => {
+//     const validator = new FormValidator(config, formElement);
+//     const profileEditForm = formElement.getAttribute("edit-profile-form");
+//     const addCardForm = formElement.getAttribute("add-card-form");
+//     formValidators[profileEditForm] = validator;
+//     formValidators[addCardForm] = validator;
+//     validator.enableValidation();
+//   });
+// };
+// enableValidation(config);
+
 const profileEditFormValidator = new FormValidator(config, profileEditForm);
 profileEditFormValidator.enableValidation();
 
 const addCardFormValidator = new FormValidator(config, addCardForm);
 addCardFormValidator.enableValidation();
-
-// Functions //
-
-function renderCard(cardData) {
-  const card = new Card(cardData, "#card-template", handleImageClick);
-  const element = card.getView();
-  cardSection.addItem(element);
-}
 
 function handleImageClick(title, link) {
   imagePreview.open(title, link);
@@ -75,8 +89,9 @@ function handleAddCardSubmit(data) {
   addCardPopup.close();
 }
 
-function handleProfileEditSubmit(formData) {
-  newUserInfo.setUserInfo(formData);
+function handleProfileEditSubmit(data) {
+  newUserInfo.setUserInfo(data);
+  console.log(data);
   editProfilePopup.close();
 }
 
