@@ -30,4 +30,6 @@ export default class PopupWithForm extends Popup {
     this._popupForm.reset();
     super.close();
   }
+
+  setLoading() {}
 }
