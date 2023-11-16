@@ -84,9 +84,14 @@ const imagePreview = new PopupWithImage("#image-modal");
 imagePreview.setEventListeners();
 
 function createCard(cardData) {
-  const cardElement = new Card(cardData, "#card-template", (link, name) => {
-    imagePreview.open(link, name);
-  });
+  const cardElement = new Card(
+    cardData,
+    "#card-template",
+    handleLikeClick,
+    (link, name) => {
+      imagePreview.open(link, name);
+    }
+  );
   return cardElement.getView();
 }
 
@@ -95,18 +100,6 @@ function renderCard(cardData) {
   cardSection.addItem(element);
 }
 
-const formValidators = {};
-const enableValidation = (config) => {
-  const formList = Array.from(document.querySelectorAll(config.formSelector));
-  formList.forEach((formElement) => {
-    const validator = new FormValidator(config, formElement);
-    const formName = formElement.getAttribute("name");
-    formValidators[formName] = validator;
-    validator.enableValidation();
-  });
-};
-enableValidation(config);
-
 // Functions //
 
 function handleAddCardSubmit(data) {
@@ -114,8 +107,7 @@ function handleAddCardSubmit(data) {
   api
     .addCard(data)
     .then((res) => {
-      const card = renderCard(res);
-      cardSection.addItem(card);
+      renderCard(res);
       addCardPopup.close();
     })
     .catch((err) => {
@@ -129,6 +121,28 @@ function handleProfileEditSubmit(data) {
     newUserInfo.setUserInfo(res);
   });
   editProfilePopup.close();
+}
+
+function handleLikeClick(card) {
+  if (card.isLiked) {
+    api
+      .unlikeCard(card.getId)
+      .then((data) => {
+        card.updateLikeStatus(data.isLiked);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  } else {
+    api
+      .likeCard(card.getId)
+      .then((data) => {
+        card.updateLikeStatus(data.isLiked);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
 }
 
 // const updateAvatarForm = new PopupWithForm("#avatar-image-modal", (avatar) => {
@@ -165,3 +179,15 @@ addCardOpenButton.addEventListener("click", () => {
 // function handleLikeClick() {}
 
 // function handleDeleteClick() {}
+
+const formValidators = {};
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    const formName = formElement.getAttribute("name");
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+enableValidation(config);
