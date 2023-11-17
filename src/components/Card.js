@@ -7,8 +7,8 @@ export default class Card {
   ) {
     this._name = name;
     this._link = link;
-    this._id = _id;
-    this.isLiked = isLiked;
+    this.id = _id;
+    this._isLiked = isLiked;
     this._cardSelector = cardSelector;
     this._handleLikeClick = handleLikeClick;
     this._handleImageClick = handleImageClick;
@@ -25,6 +25,10 @@ export default class Card {
 
   getView() {
     this._cardElement = this._getTemplate();
+    this._likeButton = this._cardElement.querySelector(".card__like-button");
+    this._deleteCardButton = this._cardElement.querySelector(
+      ".card__delete-button"
+    );
     this._setEventListeners();
     this._renderLikes();
     const cardTitle = this._cardElement.querySelector(".card__title");
@@ -35,12 +39,12 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._likeButton = this._cardElement.querySelector(".card__like-button");
-    this._likeButton.addEventListener("click", this._handleLikeClick(this._id));
+    this._cardElement.querySelector(".card__like-button");
+    this._likeButton.addEventListener("click", () => {
+      this._handleLikeClick(this);
+    });
 
-    this._deleteCardButton = this._cardElement.querySelector(
-      ".card__delete-button"
-    );
+    this._cardElement.querySelector(".card__delete-button");
     this._deleteCardButton.addEventListener(
       "click",
       this._handleDeleteCardButton
@@ -52,29 +56,21 @@ export default class Card {
     });
   }
 
-  // _handleLikeButton = () => {
-  //   this._likeButton.classList.toggle("card__like-button_active");
-  // };
-
   _handleDeleteCardButton = () => {
     this._cardElement.remove();
     this._cardElement = null;
   };
 
   updateLikeStatus(isLiked) {
-    this.isLiked = isLiked;
+    this._isLiked = isLiked;
     this._renderLikes();
   }
 
   _renderLikes() {
-    if (this.isLiked) {
+    if (this._isLiked) {
       this._likeButton.classList.add("card__like-button_active");
     } else {
       this._likeButton.classList.remove("card__like-button_active");
     }
   }
-
-  // getId() {
-  //   return this._id;
-  // }
 }

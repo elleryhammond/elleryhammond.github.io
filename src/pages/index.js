@@ -83,8 +83,6 @@ editProfilePopup.setEventListeners();
 const imagePreview = new PopupWithImage("#image-modal");
 imagePreview.setEventListeners();
 
-let cardElement;
-
 function createCard(cardData) {
   const cardElement = new Card(
     cardData,
@@ -125,21 +123,21 @@ function handleProfileEditSubmit(data) {
   editProfilePopup.close();
 }
 
-function handleLikeClick(card) {
-  if (cardElement.isLiked) {
+function handleLikeClick(item) {
+  if (!item.isLiked) {
     api
-      .unlikeCard(card)
+      .likeCard(item.id)
       .then((res) => {
-        cardElement.updateLikeStatus(res.isLiked);
+        item.updateLikeStatus(res.islLiked);
       })
       .catch((err) => {
         console.error(err);
       });
   } else {
     api
-      .likeCard(card)
+      .unlikeCard(item.id)
       .then((res) => {
-        cardElement.updateLikeStatus(res.isLiked);
+        item.updateLikeStatus(res.isLiked);
       })
       .catch((err) => {
         console.error(err);
