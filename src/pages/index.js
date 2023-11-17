@@ -63,7 +63,7 @@ api
 api
   .getUserInfo()
   .then((userData) => {
-    newUserInfo.setUserInfo(userData.name, userData.about);
+    newUserInfo.setUserInfo(userData);
   })
   .catch((err) => {
     console.error(err);
@@ -82,6 +82,8 @@ editProfilePopup.setEventListeners();
 
 const imagePreview = new PopupWithImage("#image-modal");
 imagePreview.setEventListeners();
+
+let cardElement;
 
 function createCard(cardData) {
   const cardElement = new Card(
@@ -124,26 +126,28 @@ function handleProfileEditSubmit(data) {
 }
 
 function handleLikeClick(card) {
-  if (card.isLiked) {
+  if (cardElement.isLiked) {
     api
-      .unlikeCard(card.getId)
-      .then((data) => {
-        card.updateLikeStatus(data.isLiked);
+      .unlikeCard(card)
+      .then((res) => {
+        cardElement.updateLikeStatus(res.isLiked);
       })
       .catch((err) => {
         console.error(err);
       });
   } else {
     api
-      .likeCard(card.getId)
-      .then((data) => {
-        card.updateLikeStatus(data.isLiked);
+      .likeCard(card)
+      .then((res) => {
+        cardElement.updateLikeStatus(res.isLiked);
       })
       .catch((err) => {
         console.error(err);
       });
   }
 }
+
+// function handleDeleteClick() {}
 
 // const updateAvatarForm = new PopupWithForm("#avatar-image-modal", (avatar) => {
 //   api
@@ -175,10 +179,6 @@ addCardOpenButton.addEventListener("click", () => {
   formValidators["edit-profile-form"].resetValidation();
   addCardPopup.open();
 });
-
-// function handleLikeClick() {}
-
-// function handleDeleteClick() {}
 
 const formValidators = {};
 const enableValidation = (config) => {
