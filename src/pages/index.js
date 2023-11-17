@@ -126,16 +126,16 @@ function handleProfileEditSubmit(data) {
 function handleLikeClick(item) {
   if (!item.isLiked) {
     api
-      .likeCard(item.id)
+      .likeCard(item.getId())
       .then((res) => {
-        item.updateLikeStatus(res.islLiked);
+        item.updateLikeStatus(res.isLiked);
       })
       .catch((err) => {
         console.error(err);
       });
   } else {
     api
-      .unlikeCard(item.id)
+      .unlikeCard(item.getId())
       .then((res) => {
         item.updateLikeStatus(res.isLiked);
       })

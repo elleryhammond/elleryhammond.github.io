@@ -1,14 +1,9 @@
 export default class Card {
-  constructor(
-    { name, link, _id, isLiked },
-    cardSelector,
-    handleLikeClick,
-    handleImageClick
-  ) {
-    this._name = name;
-    this._link = link;
-    this.id = _id;
-    this._isLiked = isLiked;
+  constructor(cardData, cardSelector, handleLikeClick, handleImageClick) {
+    this._name = cardData.name;
+    this._link = cardData.link;
+    this.id = cardData._id;
+    this.isLiked = cardData.isLiked;
     this._cardSelector = cardSelector;
     this._handleLikeClick = handleLikeClick;
     this._handleImageClick = handleImageClick;
@@ -62,15 +57,19 @@ export default class Card {
   };
 
   updateLikeStatus(isLiked) {
-    this._isLiked = isLiked;
+    this.isLiked = isLiked;
     this._renderLikes();
   }
 
   _renderLikes() {
-    if (this._isLiked) {
+    if (this.isLiked) {
       this._likeButton.classList.add("card__like-button_active");
     } else {
       this._likeButton.classList.remove("card__like-button_active");
     }
+  }
+
+  getId() {
+    return this.id;
   }
 }
