@@ -61,6 +61,12 @@ export const previewModalCloseButton = document.querySelector(
 );
 export const modalCaption = document.querySelector(".modal__caption");
 
+export const editAvatarModal = document.querySelector("#avatar-image-modal");
+export const editAvatarForm = document.forms["edit-avatar-form"];
+export const editAvatarOpenButton = document.querySelector(
+  "#avatar-edit-button"
+);
+
 export const profileTitle = document.querySelector(".profile__title");
 export const profileDescription = document.querySelector(
   ".profile__description"

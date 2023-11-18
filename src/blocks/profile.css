@@ -16,7 +16,7 @@
 }
 
 .profile__avatar-container {
-  /* position: absolute; */
+  position: absolute;
 }
 
 .avatar__edit-button {
@@ -30,11 +30,10 @@
   opacity: 0;
   border: none;
   background-size: contain;
-  position: absolute;
 }
 
 .avatar__edit-button:hover {
-  opacity: 1;
+  opacity: 60%;
   cursor: pointer;
 }
 

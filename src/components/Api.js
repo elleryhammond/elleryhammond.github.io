@@ -12,42 +12,42 @@ export default class Api {
   }
 
   getUserInfo() {
-    return fetch(this._baseUrl + "/users/me", {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: this._headers,
     }).then((res) => this._checkResponse(res));
   }
 
   updateUserInfo(name, about) {
-    return fetch(this._baseUrl + "/users/me", {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name,
-        about,
+        name: name,
+        about: about,
       }),
     }).then((res) => this._checkResponse(res));
   }
 
-  updateAvatar(imageURL) {
-    return fetch(this._baseUrl + "/users/me/avatar", {
+  updateAvatar(url) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: imageURL,
+        avatar: url,
       }),
     }).then((res) => this._checkResponse(res));
   }
 
   getInitialCards() {
-    return fetch(this._baseUrl + "/cards", {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
       headers: this._headers,
     }).then((res) => this._checkResponse(res));
   }
 
   addCard(card) {
-    return fetch(this._baseUrl + "/cards", {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
@@ -58,7 +58,7 @@ export default class Api {
   }
 
   // deleteCard(cardID) {
-  //   return fetch(this._baseUrl + "/cards/" + cardID, {
+  //   return fetch(`${this._baseUrl}/cards/${cardID}`, {
   //     method: "DELETE",
   //     headers: {
   //       authorization: "67f9ee29-81ba-42c1-865a-539d34535736",

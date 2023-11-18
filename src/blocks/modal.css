@@ -108,6 +108,27 @@
   line-height: normal;
 }
 
+.modal__input-avatar {
+  margin: 0px 0px 5px 0px;
+  padding: 0px 0px 13px 0px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.modal__input-avatar::placeholder {
+  color: #c4c4c4;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
 .modal__input-new {
   margin: 0px 0px 5px 0px;
   padding: 0px 0px 13px 0px;
