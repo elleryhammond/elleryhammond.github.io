@@ -67,7 +67,7 @@ api
   .getUserInfo()
   .then((userData) => {
     newUserInfo.setUserInfo(userData);
-    // newUserInfo.setUserAvatar(userData.avatar);
+    newUserInfo.setUserAvatar(userData.avatar);
   })
   .catch((err) => {
     console.error(err);
@@ -127,9 +127,9 @@ profileEditOpenButton.addEventListener("click", () => {
 
 function handleAvatarFormSubmit(data) {
   api
-    .updateAvatar(data.link)
-    .then((data) => {
-      newUserInfo.setUserAvatar(data);
+    .updateAvatar(data.avatar)
+    .then((res) => {
+      newUserInfo.setUserAvatar(res.avatar);
       updateAvatarForm.close();
     })
     .catch((err) => {
