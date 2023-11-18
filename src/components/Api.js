@@ -57,14 +57,14 @@ export default class Api {
     }).then((res) => this._checkResponse(res));
   }
 
-  // deleteCard(cardID) {
-  //   return fetch(`${this._baseUrl}/cards/${cardID}`, {
-  //     method: "DELETE",
-  //     headers: {
-  //       authorization: "67f9ee29-81ba-42c1-865a-539d34535736",
-  //     },
-  //   }).then((res) => this._checkResponse(res));
-  // }
+  deleteCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: "67f9ee29-81ba-42c1-865a-539d34535736",
+      },
+    }).then((res) => this._checkResponse(res));
+  }
 
   likeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {

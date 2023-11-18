@@ -54,6 +54,11 @@ export const addCardCloseButton = addCardModal.querySelector(
   "#add-card-close-button"
 );
 
+export const deleteCardModal = document.querySelector("#delete-card-modal");
+export const deleteCardCloseButton = document.querySelector(
+  "#delete-card-close-button"
+);
+
 export const imageModal = document.querySelector("#image-modal");
 export const imageModalPreview = document.querySelector("#image-preview-modal");
 export const previewModalCloseButton = document.querySelector(

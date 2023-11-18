@@ -1,10 +1,11 @@
+import Api from "../components/Api.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
-import Api from "../components/Api.js";
 
 import "./index.css";
 
@@ -19,6 +20,8 @@ import {
   addCardForm,
   addCardOpenButton,
   addCardCloseButton,
+  deleteCardModal,
+  deleteCardCloseButton,
   imageModal,
   imageModalPreview,
   previewModalCloseButton,
@@ -159,6 +162,7 @@ function createCard(cardData) {
     cardData,
     "#card-template",
     handleLikeClick,
+    handleDeleteClick,
     (link, name) => {
       imagePreview.open(link, name);
     }
@@ -195,7 +199,18 @@ function handleLikeClick(item) {
   }
 }
 
-// function handleDeleteClick() {}
+function handleDeleteClick() {
+  deleteCardModal.open();
+  api
+    .deleteCard()
+    .then(() => {
+      item.removeCard();
+      deleteCardModal.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
 
 // FORM VALIDATION //
 const formValidators = {};
