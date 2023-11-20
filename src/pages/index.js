@@ -57,11 +57,15 @@ api.loadPageContent().then(([cards, userData]) => {
   cardSection.renderItems();
 
   newUserInfo.setUserAvatar(userData.avatar);
-  newUserInfo.setUserInfo({
-    name: userData["name"],
-    about: userData["about"],
-    id: userData["id"],
-  });
+  newUserInfo
+    .setUserInfo({
+      name: userData["name"],
+      about: userData["about"],
+      id: userData["id"],
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 });
 
 const newUserInfo = new UserInfo(
@@ -183,6 +187,7 @@ confirmDelete.setEventListeners();
 function handleDeleteClick(card) {
   confirmDelete.open();
   confirmDelete.setSubmitAction(() => {
+    confirmDelete.setLoading(true);
     api
       .deleteCard(card.id)
       .then(() => {
@@ -191,6 +196,9 @@ function handleDeleteClick(card) {
       })
       .catch((err) => {
         console.error(err);
+      })
+      .finally(() => {
+        confirmDelete.setLoading(false, "Yes");
       });
   });
 }
