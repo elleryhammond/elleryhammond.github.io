@@ -44,29 +44,29 @@ const api = new Api({
   },
 });
 
-let cardSection;
-
-api.loadPageContent().then(([cards, userData]) => {
-  cardSection = new Section(
-    {
-      items: cards,
-      renderer: renderCard,
-    },
-    ".cards__list"
-  );
-  cardSection.renderItems();
-
-  newUserInfo.setUserAvatar(userData.avatar);
-  newUserInfo
-    .setUserInfo({
+api
+  .loadPageContent()
+  .then(([cards, userData]) => {
+    newUserInfo.setUserAvatar(userData.avatar);
+    newUserInfo.setUserInfo({
       name: userData["name"],
       about: userData["about"],
       id: userData["id"],
-    })
-    .catch((err) => {
-      console.error(err);
     });
-});
+    cardSection = new Section(
+      {
+        items: cards,
+        renderer: renderCard,
+      },
+      ".cards__list"
+    );
+    cardSection.renderItems();
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+
+let cardSection;
 
 const newUserInfo = new UserInfo(
   ".profile__title",
