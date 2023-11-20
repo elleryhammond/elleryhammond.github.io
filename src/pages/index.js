@@ -57,15 +57,14 @@ api.loadPageContent().then(([cards, userData]) => {
   cardSection.renderItems();
 
   newUserInfo.setUserAvatar(userData.avatar);
-  newUserInfo
-    .setUserInfo({
-      name: userData["name"],
-      about: userData["about"],
-      id: userData["id"],
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+  newUserInfo.setUserInfo({
+    name: userData["name"],
+    about: userData["about"],
+    id: userData["id"],
+  });
+  // .catch((err) => {
+  //   console.error(err);
+  // });
 });
 
 const newUserInfo = new UserInfo(
