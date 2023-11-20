@@ -3,8 +3,8 @@ export default class Card {
     cardData,
     cardSelector,
     handleLikeClick,
-    handleImageClick,
-    handleDeleteClick
+    handleDeleteClick,
+    handleImageClick
   ) {
     this._name = cardData.name;
     this._link = cardData.link;

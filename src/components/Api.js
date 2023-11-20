@@ -84,7 +84,7 @@ export default class Api {
     }).then((res) => this._checkResponse(res));
   }
 
-  // loadPageContent() {
-  //   return Promise.all([this.getInitialCards(), this.getUserInfo()]);
-  // }
+  loadPageContent() {
+    return Promise.all([this.getInitialCards(), this.getUserInfo()]);
+  }
 }

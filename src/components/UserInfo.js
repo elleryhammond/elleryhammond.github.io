@@ -18,10 +18,6 @@ export default class UserInfo {
     this._about.textContent = userData.about;
   }
 
-  // getUserAvatar() {
-  //   return { userAvatar: this_userAvatar.src };
-  // }
-
   setUserAvatar(avatar) {
     this._userAvatar.src = avatar;
   }
