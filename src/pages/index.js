@@ -62,9 +62,6 @@ api.loadPageContent().then(([cards, userData]) => {
     about: userData["about"],
     id: userData["id"],
   });
-  // .catch((err) => {
-  //   console.error(err);
-  // });
 });
 
 const newUserInfo = new UserInfo(
