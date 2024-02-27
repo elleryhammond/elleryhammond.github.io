@@ -6,7 +6,7 @@
 
 **Intro**
 
-Sprint 9 at TripleTen, formerly known as Practicum. This project built upon the previous sprints which focused on positioning, flexbox, BEM, responsive design, media queries, and advanced HTML and JavaScript.
+This project built upon the previous sprints which focused on positioning, flexbox, BEM, responsive design, media queries, and advanced HTML and JavaScript.
 
 **Features**
 
